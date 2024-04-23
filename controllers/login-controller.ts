@@ -7,7 +7,7 @@ import { Request, Response } from "express";
 let auth = async (req: Request, res: Response) => {
       try {
         const {email, password} = req.body;
-        const result = await loginRepository.login(new Login(email));
+        const result = await loginRepository.login(new Login(email,password));
         if (result[0].length > 0){
           const isPasswordValid = await bcrypt.compare(password, result[0][0].password);
           if (isPasswordValid){

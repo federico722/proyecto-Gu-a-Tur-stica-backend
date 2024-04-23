@@ -1,9 +1,11 @@
 class login{
     email: string;
+    password: string;
     constructor(
-        email: string, 
+        email: string, password: string 
     ){
         this.email= email;
+        this.password = password;
     }
 }
 
