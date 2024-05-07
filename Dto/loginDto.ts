@@ -1,9 +1,19 @@
 class login{
-    email: string;
+    private _email: string;
     constructor(
         email: string, 
     ){
-        this.email= email;
+        this._email= email;
+    }
+
+    // Getters
+    get email(): string{
+        return this._email;
+    }
+
+    // Setters
+    set email(email:string){
+        this._email = email;
     }
 }
 
