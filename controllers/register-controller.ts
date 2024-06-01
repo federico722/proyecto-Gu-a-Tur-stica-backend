@@ -1,8 +1,11 @@
 import bcrypt from 'bcryptjs';
 import registerRepository from '../repositories/registerRepository';
 import Register from '../Dto/registerDto';
+import generateToken from "../Helpers/generateToken";
 import { Request, Response } from "express";
+import { secred_key } from '../middleware/verifyToken';
 
+let Token: any;
 
 
 let register = async (req: Request, res: Response) => {
@@ -25,9 +28,12 @@ let register = async (req: Request, res: Response) => {
     
     const result = await registerRepository.add(new Register(nombre, apellido, edad, telefono, email, hashedPassword));
     console.log(result);
+
+    Token= generateToken({email: email},secred_key, 5)
+
     
-    return res.status(201).send(
-      { status: 'register ok', password_hasheado: hashedPassword }
+    return res.status(201).json(
+      { status: 'register ok', password_hasheado: hashedPassword , token: Token}
     );
   } catch (error: any) {
     if (error && error.code == "ER_DUP_ENTRY") {

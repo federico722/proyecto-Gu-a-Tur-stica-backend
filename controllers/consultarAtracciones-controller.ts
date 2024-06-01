@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import VerifyToken from "../Helpers/verifyToken";
+//import VerifyToken from "../middleware/verifyToken";
 import consultarAtraccionesRepository from "../repositories/consultarAtraccionesRepository";
 import Consultar from "../Dto/consultarAtraccionesDto";
 
@@ -9,7 +9,7 @@ let consultarAtraccionesTuristicas = async (req: Request, res: Response) =>{
         const municipio = req.query.municipio;
         console.log(req.body);
         
-        console.log(VerifyToken());
+        //console.log(VerifyToken());
         const result = await consultarAtraccionesRepository.consultar(new Consultar(municipio))
         console.log(result);
 
